@@ -1,0 +1,76 @@
+<div class="border-b p-2">
+  <nav class="flex flex-row w-full items-center justify-between">
+    <%= link_to "Home", root_path, class: "" %>
+
+    <div class="flex flex-row items-center">
+      <%= render_button variant: :ghost, class: "hidden dark:block", data: {
+        controller: "theme-toggle",
+        action: "theme-toggle#toggle",
+      } do %>
+      <%= icon('fa-regular', 'sun') %>
+    <% end %>
+
+    <%= render_button variant: :ghost, class: "block dark:hidden", data: {
+      controller: "theme-toggle",
+      action: "theme-toggle#toggle",
+    } do %>
+    <%= icon('fa-regular', 'moon') %>
+  <% end %>
+  <% if user %>
+    <%= render_dropdown_menu do %>
+      <%= dropdown_menu_trigger do %>
+        <button>
+          <%= render AvatarComponent.new do %>
+            <%= render AvatarImageComponent.new(image: user.remote_image_url) %>
+          <% end %>
+        </button>
+      <% end %>
+
+      <%= dropdown_menu_content do %>
+        <%= dropdown_menu_label "My Account" %>
+        <%= render_separator class: "my-1" %>
+
+        <%= dropdown_menu_item  do %>
+          <%= link_to dashboard_index_path, class: "flex flex-row items-center" do %>
+            <div class="mr-2">
+              <%= icon('fa-solid', '')%>
+            </div>
+
+            Dashbard
+          <% end %>
+        <% end %>
+
+        <%= dropdown_menu_item  do %>
+          <%= link_to profile_path(user.username), class: "flex flex-row items-center" do %>
+            <div class="mr-2">
+              <%= icon('fa-solid', 'user')%>
+            </div>
+
+            Profile
+          <% end %>
+        <% end %>
+
+
+        <%= render_separator class: "my-1" %>
+
+        <%= dropdown_menu_item  do %>
+          <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "flex flex-row items-center" do %>
+            <div class="mr-2">
+              <%= icon('fa-solid', 'right-from-bracket')%>
+            </div>
+
+            Sign out
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= render_button(
+      "Sign In",
+      as: :link,
+      href: new_user_session_path,
+    ) %>
+<% end %>
+    </div>
+  </nav>
+</div>

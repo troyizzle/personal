@@ -1,0 +1,30 @@
+<div class="flex flex-col gap-10 py-2">
+  <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <%= render_card title: "Todo List", subtitle: "Manage your daily tasks and todos" do %>
+      <div class="px-6 py-3">
+        <div class="space-y-4">
+          <div id="todos">
+            <% if @todos.empty? %>
+              <div class="h-full items-center flex justify-center">
+                <%= icon("fa-solid fa-10x", "ghost") %>
+
+              </div>
+              <p class="text-gray-500 pt-2 text-sm font-medium">
+              You have no todos yet. Add a new todo to get started.
+              </p>
+            <% else %>
+              <% @todos.each do |todo| %>
+                <%= render "todo", todo: todo %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center p-6">
+        <%= render_button text: "Add New Task", as: :link, href: new_todo_path, data: {
+          turbo_frame: :modal,
+        } %>
+      </div>
+    <% end %>
+  </section>
+</div>

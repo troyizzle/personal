@@ -1,0 +1,26 @@
+<%= render_form_for todo do |form| %>
+  <%= render FormErrorsComponent.new(form: form) %>
+  <div class="grid gap-4 py-4">
+    <div class="grid grid-cols-4 items-center gap-4">
+      <%= form.label :title, class: "col-span-1" %>
+      <%= form.text_field :title, class: "col-span-3" %>
+    </div>
+
+    <div class="grid grid-cols-4 items-center gap-4">
+      <%= form.label :due_date, class: "col-span-1" %>
+      <%= form.date_field :due_date, class: "col-span-3" %>
+    </div>
+
+    <div class="grid grid-cols-4 items-center gap-4">
+      <%= form.label :description, class: "col-span-4" %>
+    </div>
+
+    <div class="items-center gap-4 w-[320px]">
+      <%= form.rich_text_area :description, rows: 32 %>
+    </div>
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
+      <%= form.submit "Create Todo" %>
+    </div>
+  </div>
+<% end %>
+

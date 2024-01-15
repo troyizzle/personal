@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="<%= cookies[:theme] %>">
+  <head>
+    <title>Personal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
+  </head>
+
+  <body>
+    <%= render NavbarComponent.new(user: current_user) %>
+    <main class="container mx-auto px-5 flex">
+      <%= yield %>
+    </main>
+
+    <%= turbo_frame_tag "modal" %>
+  </body>
+</html>

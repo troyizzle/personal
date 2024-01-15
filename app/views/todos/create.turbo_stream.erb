@@ -1,0 +1,12 @@
+<%= turbo_stream.update :modal %>
+
+<% if @is_first_todo %>
+  <%= turbo_stream.update :todos %>
+<% end %>
+
+<%=
+  turbo_stream.prepend :todos,
+  partial: "dashboard/todo",
+  locals: { todo: @todo }
+%>
+

@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.0-beta.2",
+    "@kanety/stimulus-static-actions": "^1.0.1",
+    "@popperjs/core": "^2.11.8",
+    "@rails/actiontext": "^7.1.2",
+    "esbuild": "^0.19.11",
+    "stimulus-use": "^0.52.2",
+    "trix": "^2.0.8"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+  }
+}
